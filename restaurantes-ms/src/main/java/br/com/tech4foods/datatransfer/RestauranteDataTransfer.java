@@ -1,14 +1,21 @@
 package br.com.tech4foods.datatransfer;
 
 
-import br.com.tech4foods.service.Unique;
+import br.com.tech4foods.shared.Produto;
 
-public class RestauranteDataTransfer implements Unique<String> {
+import java.util.ArrayList;
+import java.util.List;
+
+public class RestauranteDataTransfer {
 
     private String id;
     private String nome;
-    private String[] produtos = {};
+    private List<Produto> produtos;
     private float classificacao;
+
+    public RestauranteDataTransfer() {
+        produtos = new ArrayList<>();
+    }
 
     public String getId() {
         return id;
@@ -26,14 +33,6 @@ public class RestauranteDataTransfer implements Unique<String> {
         this.nome = nome;
     }
 
-    public String[] getProdutos() {
-        return produtos;
-    }
-
-    public void setProdutos(String[] produtos) {
-        this.produtos = produtos;
-    }
-
     public float getClassificacao() {
         return classificacao;
     }
@@ -42,4 +41,11 @@ public class RestauranteDataTransfer implements Unique<String> {
         this.classificacao = classificacao;
     }
 
+    public List<Produto> getProdutos() {
+        return produtos;
+    }
+
+    public void setProdutos(List<Produto> produtos) {
+        this.produtos = produtos;
+    }
 }

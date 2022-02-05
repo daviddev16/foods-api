@@ -1,8 +1,13 @@
 package br.com.tech4foods.view.request;
 
+import br.com.tech4foods.shared.Produto;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RestauranteRequest {
 
@@ -11,9 +16,14 @@ public class RestauranteRequest {
     @Size(min = 5, message = "Nome deve ter entre 5 a 20 caracteres.")
     private String nome;
 
-    private String[] produtos = {};
+    private List<Produto> produtos;
 
+    @Positive(message = "A classificação deve ser positiva.")
     private float classificacao = 1;
+
+    public RestauranteRequest() {
+        produtos = new ArrayList<>();
+    }
 
     public String getNome() {
         return nome;
@@ -23,11 +33,11 @@ public class RestauranteRequest {
         this.nome = nome;
     }
 
-    public String[] getProdutos() {
+    public List<Produto> getProdutos() {
         return produtos;
     }
 
-    public void setProdutos(String[] produtos) {
+    public void setProdutos(List<Produto> produtos) {
         this.produtos = produtos;
     }
 

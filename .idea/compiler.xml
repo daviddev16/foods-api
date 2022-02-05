@@ -8,10 +8,13 @@
         <outputRelativeToContentRoot value="true" />
         <module name="zuul-server" />
         <module name="restaurantes-ms" />
+        <module name="produtos-ms" />
         <module name="eureka-server" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="entregas-ms" target="11" />
+      <module name="entregas-ms (1) (br.com.tech4me)" target="16" />
       <module name="eureka-server" target="11" />
       <module name="ms-pedidos" target="1.5" />
       <module name="produtos-ms" target="11" />
@@ -22,6 +25,8 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="entregas-ms" options="-parameters" />
+      <module name="entregas-ms (1) (br.com.tech4me)" options="" />
       <module name="eureka-server" options="-parameters" />
       <module name="produtos-ms" options="-parameters" />
       <module name="restaurante-ms" options="-parameters" />

@@ -1,7 +1,7 @@
 package br.com.tech4foods.controller;
 
 import br.com.tech4foods.datatransfer.RestauranteDataTransfer;
-import br.com.tech4foods.service.restaurante.RestauranteServiceImpl;
+import br.com.tech4foods.service.RestauranteServiceImpl;
 import br.com.tech4foods.view.request.RestauranteRequest;
 import br.com.tech4foods.view.response.RestauranteResponse;
 import org.modelmapper.ModelMapper;
@@ -32,8 +32,8 @@ public class RestauranteController {
 
     @GetMapping("/listar")
     public ResponseEntity<List<RestauranteResponse>> obterRestaurantes() {
-        List<RestauranteDataTransfer> Restaurantes = service.obterTodos();
-        return new ResponseEntity<>(Restaurantes.stream()
+        List<RestauranteDataTransfer> restaurantes = service.obterTodos();
+        return new ResponseEntity<>(restaurantes.stream()
                 .map(dataTransfer -> mapper.map(dataTransfer, RestauranteResponse.class))
                 .collect(Collectors.toList()), HttpStatus.ACCEPTED);
     }
@@ -41,10 +41,14 @@ public class RestauranteController {
     @GetMapping(value = "/{id}")
     public ResponseEntity<RestauranteResponse> obterRestaurantePorId(@PathVariable String id) {
         Optional<RestauranteDataTransfer> restauranteDtoOpt = service.obterPorId(id);
-        RestauranteDataTransfer restauranteDto = restauranteDtoOpt.get();
 
-        return restauranteDtoOpt.isPresent() ? new ResponseEntity<>(mapper.map(restauranteDto,
-                RestauranteResponse.class), HttpStatus.ACCEPTED) : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        if (restauranteDtoOpt.isPresent()) {
+            RestauranteDataTransfer restauranteDto = restauranteDtoOpt.get();
+
+            return new ResponseEntity<>(mapper.map(restauranteDto,
+                    RestauranteResponse.class), HttpStatus.ACCEPTED);
+        }
+        return  new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @PostMapping

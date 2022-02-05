@@ -1,10 +1,14 @@
 package br.com.tech4foods.view.response;
 
+import br.com.tech4foods.shared.Produto;
+
+import java.util.List;
+
 public class RestauranteResponse {
 
     private String id;
     private String nome;
-    private String[] produtos;
+    private List<Produto> produtos;
     private float classificacao;
 
     public String getId() {
@@ -23,11 +27,11 @@ public class RestauranteResponse {
         this.nome = nome;
     }
 
-    public String[] getProdutos() {
+    public List<Produto> getProdutos() {
         return produtos;
     }
 
-    public void setProdutos(String[] produtos) {
+    public void setProdutos(List<Produto> produtos) {
         this.produtos = produtos;
     }
 
